@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TliasWenManagementApplication<tlias-wen-management>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tweiy.TliasWenManagementApplication",
+            "projectName": "tlias-wen-management",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
