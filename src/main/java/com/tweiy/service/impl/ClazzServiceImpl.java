@@ -45,4 +45,12 @@ public class ClazzServiceImpl implements ClazzService {
         clazz.setUpdateTime(LocalDateTime.now());
         clazzMapper.insert(clazz);
     }
+
+    /**
+     * 根据ID查询班级
+     */
+    @Override
+    public Clazz getById(Integer id) {
+        return clazzMapper.selectByPrimaryKey(id);
+    }
 }

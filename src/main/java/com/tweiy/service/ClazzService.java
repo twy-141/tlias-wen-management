@@ -8,10 +8,15 @@ public interface ClazzService {
     /**
      * 分页查询班级列表
      */
-    PageResult findPage(ClazzPageQueryParam clazzPageQueryParam);
+    public PageResult findPage(ClazzPageQueryParam clazzPageQueryParam);
 
     /**
      * 新增班级
      */
     public void save(Clazz clazz);
+
+    /**
+     * 根据ID查询班级
+     */
+    public Clazz getById(Integer id);
 }
