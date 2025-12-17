@@ -8,7 +8,8 @@
                 when now() &lt; c.begin_date then '未开班'
                 when now() &gt; c.end_date then '已结班'
                 else '在读中'
-         end ) as status from clazz as c left join emp as e on c.master_id = e.id
+         end ) as status 
+         from clazz as c left join emp as e on c.master_id = e.id
           <where>
                 <if test="name != null">
                     c.name like concat('%', #{name}, '%')

@@ -9,6 +9,7 @@ import com.tweiy.pojo.Emp;
 import com.tweiy.pojo.PageResult;
 import com.tweiy.service.ClazzService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,13 @@ public class ClazzServiceImpl implements ClazzService {
         return new PageResult(p.getTotal(), p.getResult());
     }
 
+    /**
+     * 新增班级
+     */
+    @Override
+    public void save(Clazz clazz) {
+        clazz.setCreateTime(LocalDateTime.now());
+        clazz.setUpdateTime(LocalDateTime.now());
+        clazzMapper.insert(clazz);
+    }
 }
