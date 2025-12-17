@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tweiy.pojo.Emp;
 import com.tweiy.pojo.EmpQueryParam;
+import com.tweiy.pojo.EmpSimple;
 import com.tweiy.pojo.PageResult;
 
 public interface EmpService {
@@ -11,6 +12,11 @@ public interface EmpService {
      * 分页查询员工信息
      */
     public PageResult findPage(EmpQueryParam empQueryParam);
+
+    /**
+     * 查询所有员工
+     */
+    public List<EmpSimple> listAll();
 
     /**
      * 根据ID查询员工

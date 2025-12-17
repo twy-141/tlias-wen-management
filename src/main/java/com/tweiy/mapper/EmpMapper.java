@@ -7,12 +7,19 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Select;
 
 import com.tweiy.pojo.Emp;
 import com.tweiy.pojo.EmpQueryParam;
+import com.tweiy.pojo.EmpSimple;
 
 @Mapper
 public interface EmpMapper {
+    /**
+     * 查询所有员工
+     */
+    @Select("select id,name from emp")
+    public List<EmpSimple> listAll();
 
     /**
      * 统计员工性别信息

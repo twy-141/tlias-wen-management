@@ -17,6 +17,7 @@ import com.tweiy.pojo.Emp;
 import com.tweiy.pojo.EmpExpr;
 import com.tweiy.pojo.EmpLog;
 import com.tweiy.pojo.EmpQueryParam;
+import com.tweiy.pojo.EmpSimple;
 import com.tweiy.pojo.PageResult;
 import com.tweiy.service.EmpLogService;
 import com.tweiy.service.EmpService;
@@ -45,6 +46,14 @@ public class EmpServiceImpl implements EmpService {
 
         // 3. 封装结果
         return new PageResult(p.getTotal(), p.getResult());
+    }
+
+    /**
+     * 查询所有员工
+     */
+    @Override
+    public List<EmpSimple> listAll() {
+        return empMapper.listAll();
     }
 
     /**

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tweiy.pojo.Emp;
 import com.tweiy.pojo.EmpQueryParam;
+import com.tweiy.pojo.EmpSimple;
 import com.tweiy.pojo.PageResult;
 import com.tweiy.pojo.Result;
 import com.tweiy.service.EmpService;
@@ -41,6 +42,16 @@ public class EmpController {
         log.info("查询请求参数： {}", empQueryParam);
         PageResult pageResult = empService.findPage(empQueryParam);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 查询所有员工
+     */
+    @GetMapping("/all")
+    public Result listAll() {
+        log.info("查询所有员工");
+        List<EmpSimple> empList = empService.listAll();
+        return Result.success(empList);
     }
 
     /**
