@@ -1,8 +1,10 @@
 package com.tweiy.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 
@@ -11,6 +13,28 @@ import com.tweiy.pojo.EmpQueryParam;
 
 @Mapper
 public interface EmpMapper {
+
+    /**
+     * 统计员工性别信息
+     */
+    @MapKey("name")
+    List<Map> countEmpGenderData();
+
+    /**
+     * 统计每个岗位的员工数量
+     */
+    @MapKey("pos")
+    List<Map<String,Object>> countEmpJobData();
+        
+    /**
+     * 更新员工信息
+     */
+    void update(Emp emp);
+
+    /**
+     * 批量删除员工
+     */
+    void deleteBatch(List<Integer> ids);
 
     /**
      * 查询员工基本信息及部门名称

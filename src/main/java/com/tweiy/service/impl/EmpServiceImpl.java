@@ -1,6 +1,7 @@
 package com.tweiy.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,4 +92,53 @@ public class EmpServiceImpl implements EmpService {
             empLogService.insert(empLog);
         }
     }
+
+    /**
+     * 批量删除员工
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteBatch(List<Integer> ids) {
+        empMapper.deleteBatch(ids);
+        empExprMapper.deleteBatch(ids);
+    }
+
+    /**
+     * 更新员工信息
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void update(Emp emp) {
+        try {
+            /**
+             * 补全基础属性
+             */
+            emp.setUpdateTime(LocalDateTime.now());
+
+            /**
+             * 更新员工基本信息
+             */
+            empMapper.update(emp);
+
+            /**
+             * 更新员工工作经历信息
+             */
+            Integer empId = emp.getId();
+            List<EmpExpr> exprList = emp.getExprList();
+            if (!CollectionUtils.isEmpty(exprList)) {
+                exprList.forEach(empExpr -> empExpr.setEmpId(empId));
+                empExprMapper.deleteBatch(Arrays.asList(emp.getId()));
+                empExprMapper.insertBatch(exprList);
+            }
+        } finally {
+            /**
+             * 更新员工操作日志
+             */
+            EmpLog empLog = new EmpLog();
+            empLog.setOperateTime(LocalDateTime.now());
+            empLog.setInfo("更新员工：" + emp.getName());
+            empLogService.insert(empLog);
+        }
+    }
+
 }

@@ -18,3 +18,7 @@ logging:
   level: 
     org.springframework.jdbc.support.JdbcTransactionManager: debug
 
+file:
+  upload-dir: /Users/tongweiya/Desktop/images/
+
+

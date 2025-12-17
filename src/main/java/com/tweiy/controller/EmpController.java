@@ -1,11 +1,16 @@
 package com.tweiy.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tweiy.pojo.Emp;
@@ -55,6 +60,26 @@ public class EmpController {
     public Result save(@RequestBody Emp emp) {
         log.info("新增员工： {}", emp);
         empService.save(emp);
+        return Result.success();
+    }
+
+    /**
+     * 批量删除员工
+     */
+    @DeleteMapping
+    public Result deleteBatch(@RequestParam List<Integer> ids) {
+        log.info("批量删除员工： {}", ids);
+        empService.deleteBatch(ids);
+        return Result.success();
+    }
+
+    /**
+     * 更新员工信息
+     */
+    @PutMapping
+    public Result update(@RequestBody Emp emp) {
+        log.info("更新员工信息： {}", emp);
+        empService.update(emp);
         return Result.success();
     }
 }

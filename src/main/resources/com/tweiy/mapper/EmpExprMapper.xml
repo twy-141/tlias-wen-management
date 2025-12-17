@@ -9,4 +9,12 @@
             (#{expr.empId}, #{expr.begin}, #{expr.end}, #{expr.company}, #{expr.job})
         </foreach>
     </insert>
+
+    <!-- 批量删除员工工作经历信息 -->
+    <delete id="deleteBatch">
+        delete from emp_expr where emp_id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
