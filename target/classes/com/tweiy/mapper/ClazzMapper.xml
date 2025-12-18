@@ -2,6 +2,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tweiy.mapper.ClazzMapper">
+    <!-- 根据ID修改班级信息 -->
+    <update id="updateByPrimaryKey">
+        update clazz
+        <set>
+            name = #{name},
+            room = #{room},
+            begin_date = #{beginDate},
+            end_date = #{endDate},
+            <if test="masterId != null">master_id = #{masterId},</if>
+            subject = #{subject},
+            update_time = #{updateTime}
+        </set>
+        where id = #{id}
+    </update>
     <!-- 根据ID查询班级 -->
     <select id="selectByPrimaryKey" resultType="com.tweiy.pojo.Clazz">
         select c.*, e.name as masterName from clazz as c left join emp as e on c.master_id = e.id where c.id = #{id}
