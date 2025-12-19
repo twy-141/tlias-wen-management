@@ -152,8 +152,7 @@ public class EmpServiceImpl implements EmpService {
     public LoginInfo login(Emp emp) {
         Emp empLogin = empMapper.getUsernameAndPassword(emp);
         if (empLogin != null) {
-            LoginInfo loginInfo = new LoginInfo(empLogin.getId(), empLogin.getUsername(), empLogin.getName(), null);
-            return loginInfo;
+            return new LoginInfo(empLogin.getId(), empLogin.getUsername(), empLogin.getName(), null);
         }
         return null;
     }
