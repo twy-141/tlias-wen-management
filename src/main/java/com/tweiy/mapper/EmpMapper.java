@@ -60,4 +60,10 @@ public interface EmpMapper {
     @Insert("insert into emp (username, password, name, gender, phone, image, job, salary, entry_date, dept_id, create_time, update_time) " +
             "values (#{username}, #{password}, #{name}, #{gender}, #{phone}, #{image}, #{job}, #{salary}, #{entryDate}, #{deptId}, #{createTime}, #{updateTime})")
     public void insert(Emp emp);
+
+     /**
+     * 根据用户名和密码查询员工
+     */
+    @Select("select id,username,password,name from emp where username=#{username} and password=#{password}")
+    public Emp getUsernameAndPassword(Emp emp);
 }

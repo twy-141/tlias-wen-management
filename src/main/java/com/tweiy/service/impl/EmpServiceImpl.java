@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import com.tweiy.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +14,6 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.tweiy.mapper.EmpExprMapper;
 import com.tweiy.mapper.EmpMapper;
-import com.tweiy.pojo.Emp;
-import com.tweiy.pojo.EmpExpr;
-import com.tweiy.pojo.EmpLog;
-import com.tweiy.pojo.EmpQueryParam;
-import com.tweiy.pojo.EmpSimple;
-import com.tweiy.pojo.PageResult;
 import com.tweiy.service.EmpLogService;
 import com.tweiy.service.EmpService;
 
@@ -150,4 +145,16 @@ public class EmpServiceImpl implements EmpService {
         }
     }
 
+    /**
+     * 登录
+     */
+    @Override
+    public LoginInfo login(Emp emp) {
+        Emp empLogin = empMapper.getUsernameAndPassword(emp);
+        if (empLogin != null) {
+            LoginInfo loginInfo = new LoginInfo(empLogin.getId(), empLogin.getUsername(), empLogin.getName(), null);
+            return loginInfo;
+        }
+        return null;
+    }
 }

@@ -2,10 +2,7 @@ package com.tweiy.service;
 
 import java.util.List;
 
-import com.tweiy.pojo.Emp;
-import com.tweiy.pojo.EmpQueryParam;
-import com.tweiy.pojo.EmpSimple;
-import com.tweiy.pojo.PageResult;
+import com.tweiy.pojo.*;
 
 public interface EmpService {
     /**
@@ -37,4 +34,9 @@ public interface EmpService {
      * 更新员工信息
      */
     public void update(Emp emp);
+    
+    /**
+     * 登录
+     */
+    LoginInfo login(Emp emp);
 }

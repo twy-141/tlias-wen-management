@@ -1,3 +1,8 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.jdt.ls.java.home": "/Users/tongweiya/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home",
+    // "files.associations": {
+    //     "*.xml": "xml",
+    //     "*Mapper.xml": "sql"
+    // }
 }

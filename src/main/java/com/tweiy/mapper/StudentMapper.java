@@ -1,6 +1,6 @@
 package com.tweiy.mapper;
 
-import com.tweiy.dto.StudentPageQueryDTO;
+import com.tweiy.dto.student.StudentPageQueryDTO;
 import com.tweiy.pojo.Student;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -34,4 +34,14 @@ public interface StudentMapper {
      */
     @Select("select s.*, c.name as clazz_name from student as s left join clazz as c on s.clazz_id = c.id where s.id = #{id}")
     Student findById(Integer id);
+
+     /**
+      * 修改学员信息
+      */
+    void updateByPrimaryKey(Student student);
+
+    /**
+     * 批量删除学员
+     */
+    void deleteBatch(List<Integer> ids);
 }

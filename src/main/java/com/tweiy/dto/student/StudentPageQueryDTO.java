@@ -1,4 +1,4 @@
-package com.tweiy.dto;
+package com.tweiy.dto.student;
 
 import lombok.Data;
 
