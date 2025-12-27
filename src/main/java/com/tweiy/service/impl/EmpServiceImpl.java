@@ -2,9 +2,12 @@ package com.tweiy.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.tweiy.pojo.*;
+import com.tweiy.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -152,7 +155,12 @@ public class EmpServiceImpl implements EmpService {
     public LoginInfo login(Emp emp) {
         Emp empLogin = empMapper.getUsernameAndPassword(emp);
         if (empLogin != null) {
-            return new LoginInfo(empLogin.getId(), empLogin.getUsername(), empLogin.getName(), null);
+            //1. 生成JWT令牌
+            Map<String,Object> dataMap = new HashMap<>();
+            dataMap.put("id", empLogin.getId());
+            dataMap.put("username", empLogin.getUsername());
+            String jwt = JwtUtils.generateJwt(dataMap); // 生成JWT令牌
+            return new LoginInfo(empLogin.getId(), empLogin.getUsername(), empLogin.getName(), jwt);
         }
         return null;
     }
